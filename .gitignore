@@ -1,0 +1,16 @@
+# Ambiente virtual
+.venv/
+
+# Arquivos temporários do Python e do Jupyter
+__pycache__/
+.ipynb_checkpoints/
+
+# Arquivos gerados pelo dbt
+logs/
+target/
+
+# Senhas e configurações locais
+.env
+
+# Configurações do editor
+.vscode/

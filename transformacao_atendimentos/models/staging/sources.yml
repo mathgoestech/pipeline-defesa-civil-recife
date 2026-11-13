@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: public
+    tables:
+      - name: raw_atendimentos_2022
+      - name: raw_atendimentos_2023
+      - name: raw_atendimentos_2024
