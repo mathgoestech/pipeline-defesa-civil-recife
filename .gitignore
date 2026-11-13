@@ -5,6 +5,10 @@
 __pycache__/
 .ipynb_checkpoints/
 
+# Arquivos gerados pelo dbt
+logs/
+target/
+
 # Senhas e configurações locais
 .env
 
