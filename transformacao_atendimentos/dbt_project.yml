@@ -32,4 +32,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   transformacao_atendimentos:
     # Config indicated by + and applies to all files under models/example/
-    
+
+# Common values for time dimension    
+vars:
+  data_inicial: '2021-01-01'
+  data_final: '2024-12-31'
