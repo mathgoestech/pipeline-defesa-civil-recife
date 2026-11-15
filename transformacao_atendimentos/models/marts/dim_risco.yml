@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: dim_risco
+    description: "Dimensão com a classificação do grau de risco (S/R e R1 a R4), com valor -1 para risco não informado."
+    columns:
+      - name: id_risco_sk
+        description: "Chave sequencial em ordem crescente de risco, de 1 (S/R) a 5 (R4), com -1 para 'não informado', conforme ETL."
+        data_tests:
+          - not_null
+          - unique
+      - name: codigo_risco
+        description: "Código do grau de risco usado pela Defesa Civil: S/R, R1, R2, R3 ou R4."
+        data_tests:
+          - not_null
+          - unique
+      - name: descricao_risco
+        description: "Descrição do grau de risco: sem risco, baixo, médio, alto ou muito alto."
+      - name: nivel_risco
+        description: "Nível numérico do risco, de 0 (sem risco) a 4 (muito alto), para ordenar e comparar. Nulo para 'não informado'."
