@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: dim_solicitacao
+    description: >
+      Dimensão que descreve o motivo e o tipo de cada atendimento da Defesa Civil.
+      Tem uma linha para cada combinação distinta de ocorrencia e solicitacao
+      observada nas bases de 2022 a 2024, já com os valores padronizados. Ausências
+      aparecem como membros explícitos, e o id_solicitacao 0 identifica a combinação
+      totalmente desconhecida. A tabela fato se liga a esta dimensão pelos campos
+      ocorrencia e solicitacao.
+    columns:
+      - name: id_solicitacao
+        description: >
+          Chave substituta da dimensão. O valor 0 é reservado ao membro em que
+          ocorrência e solicitação são desconhecidas.
+        data_tests: [unique, not_null]
+      - name: ocorrencia
+        description: >
+          Evento que motivou o atendimento (ex.: Imóveis com Danos / Risco), com a
+          grafia padronizada. 'Sem ocorrência registrada' quando a base não informa.
+      - name: solicitacao
+        description: >
+          Tipo de serviço solicitado ou prestado (ex.: Vistoria em Imóveis), com a
+          grafia padronizada. 'Não informada' quando a base não informa.
+      - name: grupo_solicitacao
+        description: >
+          Categoria ampla da solicitação (Monitoramento, Vistoria, Lonas Plásticas,
+          Obras, Vegetação, Donativos, Outros ou Não informada), usada para agregar
+          sem perder o detalhe da coluna solicitacao.
