@@ -15,6 +15,8 @@ models:
 
       - name: data_calendario
         description: "Data no formato YYYY-MM-DD, nula para -1 (não informado)."
+        data_tests:
+          - unique
 
       - name: ano
         description: "Ano da data, entre 2021 e 2024."
@@ -58,6 +60,10 @@ models:
 
       - name: nome_mes
         description: "Nome do mês, entre janeiro e dezembro, com grafia em português, inicial minúscula e acentuação."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro', 'não informado']
 
       - name: dia
         description: "Dia do mês."
@@ -69,6 +75,10 @@ models:
 
       - name: dia_semana
         description: "Dia da semana, entre segunda-feira e domingo, com grafia em português, inicial minúscula e acentuação."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo', 'não informado']
 
       - name: fim_de_semana
         description: "Flag booleana verdadeira para sábado e domingo, e falsa para segunda a sexta-feira."
