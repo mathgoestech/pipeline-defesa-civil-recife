@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_tipo_acao
+    description: "Dimensão com os tipos de ação realizados pela Defesa Civil, já padronizados e agrupados em categorias, com valor -1 para ação não informada."
+    columns:
+      - name: id_tipo_acao_sk
+        description: "Chave sequencial em ordem alfabética do tipo de ação, começando em 1, com -1 para 'não informado', conforme ETL."
+        data_tests:
+          - not_null
+          - unique
+      - name: tipo_acao
+        description: "Nome padronizado do tipo de ação, com acentuação."
+        data_tests:
+          - not_null
+          - unique
+      - name: categoria_acao
+        description: "Categoria do tipo de ação, definida pelo grupo."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Assistência social', 'Assistência humanitária', 'Remoção de famílias', 'Avaliação técnica de risco', 'Prevenção e orientação', 'Manutenção e obras', 'Encaminhamentos', 'não informado']
