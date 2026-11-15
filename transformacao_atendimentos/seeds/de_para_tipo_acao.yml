@@ -1,0 +1,20 @@
+version: 2
+
+seeds:
+  - name: de_para_tipo_acao
+    description: "Tabela de-para que liga cada variação de escrita do tipo de ação ao nome padronizado e à categoria. As linhas sem tipo_acao são cabeçalhos de categoria que aparecem como se fossem ações e são tratadas como 'não informado'."
+    config:
+      column_types:
+        chave: text
+        tipo_acao: text
+        categoria_acao: text
+    columns:
+      - name: chave
+        description: "Tipo de ação em minúsculas, sem espaços sobrando, com espaço antes de '(' e sem ':' no final."
+        data_tests:
+          - not_null
+          - unique
+      - name: tipo_acao
+        description: "Nome padronizado do tipo de ação, com acentuação."
+      - name: categoria_acao
+        description: "Categoria do tipo de ação, definida pelo grupo."

@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_atendimentos_acao_risco
+    description: "Modelo intermediário que padroniza tipo_acao (pela tabela de-para) e grau_risco (nos códigos R1 a R4 e S/R)."
+    columns:
+      - name: grau_risco
+        description: "Código do grau de risco padronizado, nulo quando vazio ou inválido."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['R1', 'R2', 'R3', 'R4', 'S/R']
+      - name: tipo_acao
+        description: "Nome padronizado do tipo de ação, nulo quando vazio."
+      - name: categoria_acao
+        description: "Categoria do tipo de ação."
