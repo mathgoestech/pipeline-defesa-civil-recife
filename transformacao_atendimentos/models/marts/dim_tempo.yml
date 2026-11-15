@@ -1,0 +1,74 @@
+version: 2
+
+models:
+
+  - name: dim_tempo
+    description: "Dimensão de tempo com calendário entre 01-01-2021 e 31-12-2024 para data de registro de atendimentos e data de ação da Defesa Civil na tabela fato, com valor -1 para extrapolação e ausência."
+    
+    columns:
+
+      - name: id_tempo_sk
+        description: "Chave sequencial ordenada por data no intervalo 1—1461, com valor -1 como 'não informado', conforme ETL."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: data_calendario
+        description: "Data no formato YYYY-MM-DD, nula para -1 (não informado)."
+
+      - name: ano
+        description: "Ano da data, entre 2021 e 2024."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [2021, 2022, 2023, 2024]
+                quote: false
+
+      - name: semestre
+        description: "Semestre do ano, entre 1 e 2."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2]
+                quote: false
+
+      - name: trimestre
+        description: "Trimestre do ano, entre 1 e 4."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
+      
+      - name: bimestre
+        description: "Bimestre do ano, entre 1 e 6."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5, 6]
+                quote: false
+
+      - name: mes
+        description: "Mês do ano, entre 1 e 12."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                quote: false
+
+      - name: nome_mes
+        description: "Nome do mês, entre janeiro e dezembro, com grafia em português, inicial minúscula e acentuação."
+
+      - name: dia
+        description: "Dia do mês."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+                quote: false
+
+      - name: dia_semana
+        description: "Dia da semana, entre segunda-feira e domingo, com grafia em português, inicial minúscula e acentuação."
+
+      - name: fim_de_semana
+        description: "Flag booleana verdadeira para sábado e domingo, e falsa para segunda a sexta-feira."
