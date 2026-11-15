@@ -1,0 +1,48 @@
+tipo,chave,valor_padrao,grupo
+ocorrencia,imveis com danos / risco,Imóveis com Danos / Risco,
+ocorrencia,deslizamentos de barreiras,Deslizamentos de Barreiras,
+ocorrencia,imveis alagados,Imóveis Alagados,
+ocorrencia,rvores em risco,Árvores em Risco,
+ocorrencia,muro com danos,Muro com Danos,
+ocorrencia,alagamentos,Alagamentos,
+ocorrencia,incndios,Incêndios,
+ocorrencia,invaso de terreno de auxlio moradia,Invasão de Terreno de Auxílio Moradia,
+ocorrencia,desabamento parcial imveis,Desabamento Parcial Imóveis,
+ocorrencia,desabamento parcial de obras de conteno / drenagem,Desabamento Parcial de Obras de Contenção / Drenagem,
+ocorrencia,vtimas,Vítimas,
+ocorrencia,desabamento total imveis,Desabamento Total Imóveis,
+ocorrencia,tombamento de rvores,Tombamento de Árvores,
+ocorrencia,vtimas fatais,Vítimas Fatais,
+ocorrencia,postes em risco,Postes em Risco,
+ocorrencia,elevao do nvel do rio,Elevação do Nível do Rio,
+ocorrencia,produtos qumicos perigosos,Produtos Químicos Perigosos,
+ocorrencia,desabamento total de obras de conteno / drenagem,Desabamento Total de Obras de Contenção / Drenagem,
+solicitacao,monitoramento,Monitoramento,Monitoramento
+solicitacao,monitoramento alagado,Monitoramento Alagado,Monitoramento
+solicitacao,monitoramento setor alagado,Monitoramento Setor Alagado,Monitoramento
+solicitacao,monitoramento em imveis,Monitoramento em Imóveis,Monitoramento
+solicitacao,monit. de obras,Monitoramento de Obras,Obras
+solicitacao,vistoria,Vistoria,Vistoria
+solicitacao,vistoria em imveis,Vistoria em Imóveis,Vistoria
+solicitacao,vistoria alagado,Vistoria Alagado,Vistoria
+solicitacao,vistoria setor alagado,Vistoria Setor Alagado,Vistoria
+solicitacao,vistoria para viabilidade,Vistoria para Viabilidade,Vistoria
+solicitacao,colocao de lonas plsticas,Colocação de Lonas Plásticas,Lonas Plásticas
+solicitacao,reposio de lonas plsticas,Reposição de Lonas Plásticas,Lonas Plásticas
+solicitacao,acompanhamento de obra,Acompanhamento de Obras,Obras
+solicitacao,acomp. de obras,Acompanhamento de Obras,Obras
+solicitacao,abertura de obras,Abertura de Obras,Obras
+solicitacao,abertura e acomp. de obras,Abertura e Acompanhamento de Obras,Obras
+solicitacao,concluso de obras,Conclusão de Obras,Obras
+solicitacao,fechamento de obras,Fechamento de Obras,Obras
+solicitacao,capinao,Capinação,Vegetação
+solicitacao,capinaao,Capinação,Vegetação
+solicitacao,corte de arvore,Corte de Árvore,Vegetação
+solicitacao,corte de bananeira,Corte de Bananeira,Vegetação
+solicitacao,donativos,Donativos,Donativos
+solicitacao,entrega donativos,Entrega de Donativos,Donativos
+solicitacao,remoo,Remoção,Outros
+solicitacao,entulhos,Entulhos,Outros
+solicitacao,contato telefonico,Contato Telefônico,Outros
+solicitacao,viabilidade parceria,Viabilidade Parceria,Outros
+solicitacao,reavaliao de terreno de auxlio moradia,Reavaliação de Terreno de Auxílio Moradia,Outros
