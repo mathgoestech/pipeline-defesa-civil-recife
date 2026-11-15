@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: int_atendimentos_datas
+    description: "Modelo intermediário de formatação de datas, cálculo de dias_ate_acao e ativação de flag_data_inconsistente."
+    columns:
+      - name: flag_data_inconsistente
+        data_tests:
+          - not_null
