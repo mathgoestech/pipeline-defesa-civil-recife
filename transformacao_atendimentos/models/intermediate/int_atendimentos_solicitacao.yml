@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: int_atendimentos_solicitacao
+    description: >
+      Atendimentos com ocorrencia e solicitacao padronizadas. Mantém todas as colunas
+      de int_atendimentos_medidas e acrescenta a versão padronizada de cada campo,
+      obtida pelo cruzamento com o seed mapa_solicitacao. Valores nulos recebem um
+      rótulo explícito, de modo que nenhuma linha fique sem chave para a dimensão.
+    columns:
+      - name: ocorrencia_padrao
+        description: >
+          Ocorrência com a grafia padronizada. Recebe 'Sem ocorrência registrada'
+          quando a base não informa a ocorrência.
+        data_tests: [not_null]
+      - name: solicitacao_padrao
+        description: >
+          Solicitação com a grafia padronizada. Recebe 'Não informada' quando a base
+          não informa a solicitação.
+        data_tests: [not_null]
+      - name: grupo_solicitacao
+        description: >
+          Categoria ampla da solicitação, definida no seed mapa_solicitacao. Recebe
+          'Não informada' quando a solicitação é nula.

@@ -1,0 +1,31 @@
+version: 2
+
+seeds:
+  - name: mapa_solicitacao
+    description: >
+      Tabela de de-para usada para padronizar as colunas ocorrencia e solicitacao.
+      A base de 2022 chegou sem os caracteres acentuados, e todas as bases têm variações de caixa, espaços e abreviações.
+      Cada linha liga uma chave de comparação à grafia correta do valor. É a fonte
+      única de padronização, compartilhada entre o ELT e o ETl.
+    columns:
+      - name: tipo
+        description: >
+          Coluna de origem do valor: 'ocorrencia' ou 'solicitacao'.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['ocorrencia', 'solicitacao']
+      - name: chave
+        description: >
+          Chave de comparação do valor original: minúsculas, sem caracteres fora do
+          ASCII e com espaços colapsados. Variações do mesmo valor geram a mesma chave.
+        data_tests: [not_null]
+      - name: valor_padrao
+        description: >
+          Grafia correta e única do valor, com acentos e capitalização padronizados.
+        data_tests: [not_null]
+      - name: grupo
+        description: >
+          Agrupamento da solicitação em categorias mais amplas (ex.: Monitoramento,
+          Vistoria, Obras). Preenchido apenas para o tipo 'solicitacao'; vazio para
+          'ocorrencia'.
