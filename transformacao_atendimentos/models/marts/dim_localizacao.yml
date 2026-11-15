@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: dim_localizacao
+    description: "Dimensão de localização contendo combinações distintas de regional, bairro e localidade, com chave substituta e registro -1 para localização não informada."
+
+    columns:
+      - name: id_localizacao_sk
+        description: "Chave substituta da dimensão, gerada sequencialmente para cada localização distinta, com valor -1 para localização não informada."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: regional
+        description: "Regional administrativa associada à localização, quando conhecida."
+
+      - name: bairro
+        description: "Nome padronizado do bairro."
+
+      - name: localidade
+        description: "Nome padronizado da localidade."

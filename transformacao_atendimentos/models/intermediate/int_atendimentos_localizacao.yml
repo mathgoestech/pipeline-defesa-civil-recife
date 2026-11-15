@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: int_atendimentos_localizacao
+    description: "Modelo intermediário responsável pela padronização de regional, bairro e localidade, correção de nomes e preenchimento de regionais ausentes com base na combinação de bairro e localidade."
+
+    columns:
+      - name: regional
+        description: "Regional do atendimento, padronizada e preenchida quando existe correspondência de bairro e localidade."
+
+      - name: bairro
+        description: "Bairro do atendimento após limpeza de espaços, tratamento de valores inválidos e aplicação da tabela de-para."
+
+      - name: localidade
+        description: "Localidade do atendimento após padronização, correção de nomes e tratamento de valores inválidos."
