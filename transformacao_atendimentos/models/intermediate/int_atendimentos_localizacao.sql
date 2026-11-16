@@ -119,15 +119,18 @@ bairros_corrigidos AS (
     SELECT
         a.*,
 
-        COALESCE(
-            dp.bairro_padronizado,
-            REGEXP_REPLACE(
-                a.bairro_limpo,
-                '^Jd\.\s*', 'Jardim ', 'i'
+        BTRIM(
+            COALESCE(
+                dp.bairro_padronizado,
+                REGEXP_REPLACE(
+                    a.bairro_limpo,
+                    '^Jd\.\s*', 'Jardim ', 'i'
+                )
             )
         ) AS bairro_corrigido
 
     FROM chaves_localizacao AS a
+
 
     LEFT JOIN {{ ref('de_para_bairro') }} AS dp
         ON a.chave_bairro =
