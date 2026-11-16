@@ -26,7 +26,7 @@ WITH textos_padronizados AS (
         INITCAP(REGEXP_REPLACE(BTRIM(regional), '\s+', ' ', 'g'))
             AS regional_tratada,
 
-        INITCAP(REGEXP_REPLACE(BTRIM(bairro), '\s+', ' ', 'g'))
+        INITCAP(REGEXP_REPLACE(BTRIM(REPLACE(bairro, CHR(160), ' ')),'\s+', ' ', 'g'))  
             AS bairro_tratado,
 
         INITCAP(REGEXP_REPLACE(BTRIM(localidade), '\s+', ' ', 'g'))
