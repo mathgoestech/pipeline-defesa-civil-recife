@@ -10,10 +10,10 @@ models:
       totalmente desconhecida. A tabela fato se liga a esta dimensão pelos campos
       ocorrencia e solicitacao.
     columns:
-      - name: id_solicitacao
+      - name: id_solicitacao_sk
         description: >
-          Chave substituta da dimensão. O valor 0 é reservado ao membro em que
-          ocorrência e solicitação são desconhecidas.
+          Chave substituta da dimensão. O valor -1 é reservado ao membro em que
+          ocorrência e solicitação são desconhecidas. Os demais ids começam em 2.
         data_tests: [unique, not_null]
       - name: ocorrencia
         description: >
