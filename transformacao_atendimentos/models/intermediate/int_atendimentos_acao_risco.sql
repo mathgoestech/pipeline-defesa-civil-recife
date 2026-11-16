@@ -19,10 +19,11 @@ WITH chaves AS (
         -- chave de comparação do grau de risco: maiúsculas e sem nenhum espaço
         REGEXP_REPLACE(UPPER(grau_risco), '\s', '', 'g') AS chave_grau_risco
 
-    FROM {{ ref('int_atendimentos_medidas') }}
+    FROM {{ ref('int_atendimentos_deduplicados') }}
 )
 
 SELECT
+    c.id_atendimento,
     c.regional,
     c.ano,
     c.mes,

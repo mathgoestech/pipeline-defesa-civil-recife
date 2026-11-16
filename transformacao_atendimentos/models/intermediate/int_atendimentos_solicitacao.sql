@@ -9,10 +9,11 @@ WITH com_chave AS (
         *,
         NULLIF(BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(ocorrencia), '[^ -~]', '', 'g'), '\s+', ' ', 'g')), '') AS chave_ocorrencia,
         NULLIF(BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(solicitacao), '[^ -~]', '', 'g'), '\s+', ' ', 'g')), '') AS chave_solicitacao
-    FROM {{ ref('int_atendimentos_medidas') }}
+    FROM {{ ref('int_atendimentos_deduplicados') }}
 )
 
 SELECT
+    c.id_atendimento,
     c.regional,
     c.ano,
     c.mes,

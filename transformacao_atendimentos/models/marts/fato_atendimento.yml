@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: fato_atendimento
+    description: >
+      Tabela fato de atendimentos da Defesa Civil do Recife.
+      Cada linha representa um atendimento após a remoção de duplicatas,
+      com relacionamentos para as cinco dimensões.
+
+    columns:
+      - name: id_atendimento
+        description: Identificador único do atendimento.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: id_localizacao_sk
+        description: Chave estrangeira da dimensão localização.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_localizacao')
+                field: id_localizacao_sk
+
+      - name: id_solicitacao_sk
+        description: Chave estrangeira da dimensão solicitação.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_solicitacao')
+                field: id_solicitacao_sk
+
+      - name: id_tipo_acao_sk
+        description: Chave estrangeira da dimensão tipo de ação.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_tipo_acao')
+                field: id_tipo_acao_sk
+
+      - name: id_risco_sk
+        description: Chave estrangeira da dimensão risco.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_risco')
+                field: id_risco_sk
+
+      - name: id_tempo_registro_sk
+        description: Chave estrangeira da dimensão tempo para a data de registro.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_tempo')
+                field: id_tempo_sk
+
+      - name: id_tempo_acao_sk
+        description: Chave estrangeira da dimensão tempo para a data da ação.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_tempo')
+                field: id_tempo_sk

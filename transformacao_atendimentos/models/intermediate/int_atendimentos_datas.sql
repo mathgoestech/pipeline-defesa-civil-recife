@@ -3,6 +3,7 @@
 WITH datas_convertidas AS (
 
     SELECT
+        id_atendimento,
         regional,
         ocorrencia,
         solicitacao,
@@ -42,10 +43,11 @@ WITH datas_convertidas AS (
 
         END AS mes_cad
     
-    FROM {{ ref('int_atendimentos_medidas') }}
+    FROM {{ ref('int_atendimentos_deduplicados') }}
 )
 
 SELECT
+    id_atendimento,
     regional,
     ocorrencia,
     solicitacao,

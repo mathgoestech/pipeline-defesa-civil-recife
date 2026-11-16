@@ -3,6 +3,7 @@
 WITH textos_padronizados AS (
 
     SELECT
+        id_atendimento,
         regional,
         ano,
         mes,
@@ -31,7 +32,7 @@ WITH textos_padronizados AS (
         INITCAP(REGEXP_REPLACE(BTRIM(localidade), '\s+', ' ', 'g'))
             AS localidade_tratada
 
-    FROM {{ ref('int_atendimentos_medidas') }}
+    FROM {{ ref('int_atendimentos_deduplicados') }}
 ),
 
 valores_invalidos AS (
@@ -105,9 +106,9 @@ chaves_localizacao AS (
     SELECT
         a.*,
 
-        UPPER(unaccent(a.bairro_limpo)) AS chave_bairro,
+        UPPER(public.unaccent(a.bairro_limpo)) AS chave_bairro,
 
-        UPPER(unaccent(a.localidade_corrigida))
+        UPPER(public.unaccent(a.localidade_corrigida))
             AS chave_localidade
 
     FROM localidades_corrigidas AS a
@@ -130,7 +131,7 @@ bairros_corrigidos AS (
 
     LEFT JOIN {{ ref('de_para_bairro') }} AS dp
         ON a.chave_bairro =
-           UPPER(unaccent(BTRIM(dp.bairro_original)))
+           UPPER(public.unaccent(BTRIM(dp.bairro_original)))
 ),
 
 contagem_regionais AS (
@@ -171,6 +172,7 @@ regionais_mais_frequentes AS (
 )
 
 SELECT
+    a.id_atendimento,
     COALESCE(a.regional_limpa, r.regional_limpa) AS regional,
     a.ano,
     a.mes,

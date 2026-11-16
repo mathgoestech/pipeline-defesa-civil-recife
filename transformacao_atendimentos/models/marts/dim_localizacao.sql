@@ -19,9 +19,9 @@ localizacoes_com_chave AS (
     SELECT
         ROW_NUMBER() OVER (
             ORDER BY
-                regional NULLS LAST,
-                bairro NULLS LAST,
-                localidade NULLS LAST
+                regional COLLATE "C" NULLS LAST,
+                bairro COLLATE "C" NULLS LAST,
+                localidade COLLATE "C" NULLS LAST
         ) AS id_localizacao_sk,
 
         regional,
@@ -43,6 +43,6 @@ UNION ALL
 
 SELECT
     -1 AS id_localizacao_sk,
-    NULL AS regional,
-    NULL AS bairro,
-    NULL AS localidade
+    'não informado' AS regional,
+    'não informado' AS bairro,
+    'não informado' AS localidade
