@@ -1,0 +1,17 @@
+version: 2
+
+seeds:
+  - name: de_para_bairro
+    description: "Tabela de padronização dos nomes dos bairros."
+
+    columns:
+      - name: bairro_original
+        description: "Nome do bairro antes da padronização."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: bairro_padronizado
+        description: "Nome do bairro após a padronização."
+        data_tests:
+          - not_null

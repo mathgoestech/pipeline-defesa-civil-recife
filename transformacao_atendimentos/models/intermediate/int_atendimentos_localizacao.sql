@@ -1,5 +1,7 @@
 {{ config(materialized='view') }}
 
+-- padronização dos textos de regional, bairro e localidade
+-- removendo espaços extras e deixa as iniciais das palavras maiúsculas
 WITH textos_padronizados AS (
 
     SELECT
@@ -35,6 +37,8 @@ WITH textos_padronizados AS (
     FROM {{ ref('int_atendimentos_deduplicados') }}
 ),
 
+-- substitui valores ausentes ou inválidos por NULL
+-- assim evitando que respostas como 'NA' e 'Não informado' sejam tratadas como locais diferentes
 valores_invalidos AS (
 
     SELECT
@@ -49,7 +53,7 @@ valores_invalidos AS (
 
         CASE
             WHEN bairro_tratado IS NULL
-                 OR UPPER(bairro_tratado) IN (
+                 OR UPPER(public.unaccent(BTRIM(bairro_tratado))) IN (
                      '', 'NA', 'NAO INFORMADO',
                      'SEM BAIRRO', 'BAIRRO NAO CADASTRADO'
                  )
@@ -71,6 +75,8 @@ valores_invalidos AS (
     FROM textos_padronizados
 ),
 
+-- corrige possiveis erros de escrita encontrados nas localidades
+-- apos isso faz as substituições de abreviações como 'Cgo.' por 'Corrego' e 'Jd.' por 'Jardim'
 localidades_corrigidas AS (
 
     SELECT
@@ -101,6 +107,8 @@ localidades_corrigidas AS (
     FROM valores_invalidos
 ),
 
+-- cria chaves de comparação sem acentos e com letras maiúsculas
+-- facilitando a identificação dos nomes equivalentes escritos de formas diferentes
 chaves_localizacao AS (
 
     SELECT
@@ -114,16 +122,20 @@ chaves_localizacao AS (
     FROM localidades_corrigidas AS a
 ),
 
+-- corrige os nomes dos bairros usando o arquivo de_para_bairro
+-- se não houver correspondência no arquivo mantém o nome tratado e expande 'Jd.'
 bairros_corrigidos AS (
 
     SELECT
         a.*,
 
-        COALESCE(
-            dp.bairro_padronizado,
-            REGEXP_REPLACE(
-                a.bairro_limpo,
-                '^Jd\.\s*', 'Jardim ', 'i'
+        BTRIM(
+            COALESCE(
+                dp.bairro_padronizado,
+                REGEXP_REPLACE(
+                    a.bairro_limpo,
+                    '^Jd\.\s*', 'Jardim ', 'i'
+                )
             )
         ) AS bairro_corrigido
 
@@ -134,6 +146,8 @@ bairros_corrigidos AS (
            UPPER(public.unaccent(BTRIM(dp.bairro_original)))
 ),
 
+-- conta quantas vezes cada regional aparece para uma combinação de bairro e localidade
+-- considera apenas registros que possuem os três campos preenchidos
 contagem_regionais AS (
 
     SELECT
@@ -154,6 +168,8 @@ contagem_regionais AS (
         regional_limpa
 ),
 
+-- a parte abaixo serve pra identificar a regional mais frequente para cada combinação de bairro e localidade
+-- O ROW_NUMBER atribui a posição 1 à regional com maior quantidade de registros
 regionais_mais_frequentes AS (
 
     SELECT
@@ -171,6 +187,8 @@ regionais_mais_frequentes AS (
     FROM contagem_regionais
 )
 
+-- monta o resultado final com os nomes já corrigidos
+-- preenche regionais ausentes usando a regional mais frequente do mesmo bairro e localidade
 SELECT
     a.id_atendimento,
     COALESCE(a.regional_limpa, r.regional_limpa) AS regional,
