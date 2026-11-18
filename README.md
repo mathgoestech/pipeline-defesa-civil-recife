@@ -2,7 +2,7 @@
 
 Data Warehouse com os atendimentos da Defesa Civil do Recife (2022 a 2024), modelado em esquema estrela no PostgreSQL. O mesmo modelo é construído de duas formas: ETL com pandas e ELT com dbt.
 
-Fonte dos dados: [Registro de atendimentos da Defesa Civil – Portal de Dados Abertos do Recife](https://dados.recife.pe.gov.br/dataset/registro-de-atendimentos-da-defesa-civil)
+Fonte dos dados: [Registro de Atendimentos da Defesa Civil – Portal de Dados Abertos do Recife](https://dados.recife.pe.gov.br/dataset/registro-de-atendimentos-da-defesa-civil)
 
 ## Estrutura do repositório
 
@@ -47,7 +47,7 @@ Execute todas as células de `notebooks/ETL.ipynb` com a pasta `notebooks/` como
 
 ### ELT (dbt)
 
-1. Execute todas as células de `notebooks/ELT.ipynb`, também a partir da pasta `notebooks/`. Ele carrega os CSVs sem tratamento nas tabelas `raw_atendimentos_2022`, `raw_atendimentos_2023` e `raw_atendimentos_2024` do schema `public`.
+1. Execute as células de `notebooks/ELT.ipynb`, também a partir da pasta `notebooks/`, até a seção "Transformação dos dados (sem incluí-la)". Elas carregam os CSVs sem tratamento nas tabelas `raw_atendimentos_2022`, `raw_atendimentos_2023` e `raw_atendimentos_2024` do schema `public`.
 
 2. Crie o arquivo `~/.dbt/profiles.yml` (no Windows: `C:\Users\SEU_USUARIO\.dbt\profiles.yml`):
 
@@ -74,6 +74,8 @@ Execute todas as células de `notebooks/ETL.ipynb` com a pasta `notebooks/` como
    ```
 
    O `dbt build` carrega os seeds, cria os modelos no schema `elt` e executa os testes.
+
+4. Volte ao `notebooks/ELT.ipynb` e execute as células da seção "Transformação dos dados", que conferem as tabelas criadas pelo dbt.
 
 ### Comparação ETL x ELT
 
