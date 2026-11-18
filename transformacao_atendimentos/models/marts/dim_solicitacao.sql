@@ -1,8 +1,8 @@
 {{ config(materialized='table') }}
 
 -- Uma linha por combinação (ocorrencia, solicitacao) observada nos atendimentos.
--- id_solicitacao = 0 é o membro "tudo desconhecido". COLLATE "C" faz a ordenação
--- bater com a do ETL (ordem de código de caractere), então os ids coincidem.
+-- id_solicitacao = -1 é o membro "tudo desconhecido"; as demais combinações recebem ids a partir de 2, como no ETL.
+-- COLLATE "C" faz a ordenação bater com a do ETL (ordem de código de caractere), então os ids coincidem.
 
 WITH combinacoes AS (
     SELECT DISTINCT
