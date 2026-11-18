@@ -53,7 +53,7 @@ valores_invalidos AS (
 
         CASE
             WHEN bairro_tratado IS NULL
-                 OR UPPER(bairro_tratado) IN (
+                 OR UPPER(public.unaccent(BTRIM(bairro_tratado))) IN (
                      '', 'NA', 'NAO INFORMADO',
                      'SEM BAIRRO', 'BAIRRO NAO CADASTRADO'
                  )
