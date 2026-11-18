@@ -47,7 +47,7 @@ Execute todas as células de `notebooks/ETL.ipynb` com a pasta `notebooks/` como
 
 ### ELT (dbt)
 
-1. Execute as células de `notebooks/ELT.ipynb`, também a partir da pasta `notebooks/`, até a seção "Transformação dos dados (sem incluí-la)". Elas carregam os CSVs sem tratamento nas tabelas `raw_atendimentos_2022`, `raw_atendimentos_2023` e `raw_atendimentos_2024` do schema `public`.
+1. Execute as células de `notebooks/ELT.ipynb`, também a partir da pasta `notebooks/`, até a seção "Transformação dos dados" (sem incluí-la). Elas carregam os CSVs sem tratamento nas tabelas `raw_atendimentos_2022`, `raw_atendimentos_2023` e `raw_atendimentos_2024` do schema `public`.
 
 2. Crie o arquivo `~/.dbt/profiles.yml` (no Windows: `C:\Users\SEU_USUARIO\.dbt\profiles.yml`):
 
