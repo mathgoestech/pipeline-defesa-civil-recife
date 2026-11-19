@@ -10,6 +10,7 @@ Fonte dos dados: [Registro de Atendimentos da Defesa Civil – Portal de Dados A
 - `transformacao_atendimentos/`: projeto dbt que transforma as tabelas brutas no esquema estrela (ELT).
 - `analises/`: consultas SQL e notebook das análises feitas sobre o Data Warehouse.
 - `consultas/`: consulta que compara o resultado do ETL com o do ELT.
+- `docs/`: relatório do projeto (PDF).
 
 ## Como rodar
 
